@@ -1,48 +1,60 @@
-import React from 'react';
-import './App.css';
-import App from "./App";
+import React, {useState} from 'react';
+import {FilterType} from "./App";
 
-type TodoListPropsType = {
-    title: string,
-    tasks: Array<TaskType>
 
-}
-
-type TaskType = {
-    id: number,
-    title: string,
+export type TaskType = {
+    id: number
+    title: string
     isDone: boolean
 }
 
-export const TodoList = (props: TodoListPropsType) => {
-    return (
+type PropsType = {
+    title: string
+    tasks: Array<TaskType>
+    removeTask:(id:number)=>void
+    setFilterTasks:(filterTasks:FilterType)=>void
+    filterTasks:FilterType
 
-        <div>
-            <h3>{props.title}</h3>
-
-            <div>
-                <input/>
-                <button>+</button>
-            </div>
-            <ul>
-                {props.tasks.map(el=>{
-                    return (
-                        <li><input type="checkbox" checked={el.isDone}/> <span>{el.title}</span></li>
-                    )
-                })}
-
-                {/*<li><input type="checkbox" checked={props.tasks[0].isDone}/> <span>{props.tasks[0].title}</span></li>*/}
-                {/*<li><input type="checkbox" checked={props.tasks[1].isDone}/> <span>{props.tasks[1].title}</span></li>*/}
-                {/*<li><input type="checkbox" checked={props.tasks[2].isDone}/> <span>{props.tasks[2].title}</span></li>*/}
-
-            </ul>
-            <div>
-                <button>All</button>
-                <button>Active</button>
-                <button>Completed</button>
-            </div>
-        </div>
-
-    );
 }
 
+export function Todolist(props: PropsType) {
+
+    // let [filterTasks, setFilterTasks]=useState<FilterType>("All")
+
+    let durhlaq = props.tasks
+    if (props.filterTasks === 'Active') {
+        durhlaq =props.tasks.filter((el) => el.isDone === false)
+    }
+    if (props.filterTasks === 'Completed') {
+        durhlaq =props.tasks.filter((el) => el.isDone)
+    }
+    const taskFilter = (filterValue: FilterType) => {
+        props.setFilterTasks(filterValue)
+    }
+
+    return <div>
+        <h3>{props.title}</h3>
+        <div>
+            <input/>
+            <button>+</button>
+        </div>
+        <ul>
+            {durhlaq.map(el => {
+                return (
+                    <li key={el.id}>
+                        <button onClick={()=>{props.removeTask(el.id)}}>X</button>
+
+                        <input type="checkbox" checked={el.isDone}/>
+                        <span>{el.title}</span>
+
+                    </li>)
+            })}
+
+        </ul>
+        <div>
+            <button onClick={()=>taskFilter('All')}>All</button>
+            <button onClick={()=>taskFilter('Active')} >Active</button>
+            <button onClick={()=>taskFilter('Completed')}>Completed</button>
+        </div>
+    </div>
+}
