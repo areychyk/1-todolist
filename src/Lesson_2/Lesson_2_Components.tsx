@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {FilterType} from "./App";
+import {FilterType} from "./Lesson_2";
 
 
 export type TaskType = {
@@ -17,7 +17,7 @@ type PropsType = {
 
 }
 
-export function Todolist(props: PropsType) {
+export function Lesson_2_Components (props: PropsType) {
 
     // let [filterTasks, setFilterTasks]=useState<FilterType>("All")
 
