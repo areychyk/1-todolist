@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import '../App.css';
+import {Lesson_2_TodoList} from "./Lesson_2_TodoList";
 
-import {Lesson_2_Components} from "./Lesson_2_Components";
+
 
 export type FilterType = 'All' | 'Active' | 'Completed'
 
@@ -41,7 +42,7 @@ export function Lesson_2 () {
 
     return (
         <div className="App">
-            <Lesson_2_Components
+            <Lesson_2_TodoList
                 title="What to learn"
                 tasks={tasks}
                 removeTask={removeTask}
@@ -52,5 +53,3 @@ export function Lesson_2 () {
         </div>
     );
 }
-
-

@@ -1,16 +1,17 @@
 import React from 'react';
 import './App.css';
 
-import {Lesson_2} from "./Lesson_2/Lesson_2";
-import {ComponentsApp} from "./PS_2/ComponentsApp";
+import {Lesson_3_App} from "./Lessons/Lesson_3/Lesson_3_App";
+import {ComponentsApp} from "./PS/PS_2/ComponentsApp";
 
 
 
 
 function App() {
     return (
-        // <Lesson_2/>
-        <ComponentsApp/>
+        // <Lesson_2_App/>
+        <Lesson_3_App/>
+
     );
 }
 
