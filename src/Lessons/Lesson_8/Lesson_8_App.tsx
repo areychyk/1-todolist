@@ -24,7 +24,7 @@ export type TodoListType = {
 
 }
 
-type TasksStateType = {
+export type TasksStateType = {
     [todoListId: string]: Array<TaskType>
 
 }
