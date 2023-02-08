@@ -10,6 +10,8 @@ import {Lesson_3_App} from "./Lessons/Lesson_3/Lesson_3_App";
 // import Lesson_6_App from "./Lessons/Lesson_6/Lesson_6_App";
 // import Lesson_7_App from "./Lessons/Lesson_7/Lesson_7_App";
 import Lesson_8_App from "./Lessons/Lesson_8/Lesson_8_App";
+import Lesson_8_App_UseReducer from "./Lessons/Lesson_8/Lesson_8_App_UseReducer";
+import Lesson_8_App_Redux from "./Lessons/Lesson_8/Lesson_8_App_Redux";
 // import Lesson_9_App from "./Lessons/Lesson_9/Lesson_9_App";
 
 
@@ -23,7 +25,9 @@ function App() {
         {/* <Lesson_5_App/>*/}
         {/* <Lesson_6_App/>*/}
         {/*<Lesson_7_App/>*/}
-        <Lesson_8_App/>
+        {/*<Lesson_8_App/>*/}
+        {/*<Lesson_8_App_UseReducer/>*/}
+        <Lesson_8_App_Redux/>
         {/*<Lesson_9_App/>*/}
         {/*<ComponentsApp_3/>*/}
         {/*<ComponentsApp_4/>*/}
