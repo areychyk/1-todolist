@@ -1,4 +1,4 @@
-import React, {Reducer, useEffect, useReducer, useState} from 'react';
+import React, {Reducer, useCallback, useEffect, useReducer, useState} from 'react';
 import './App.css'
 
 import {v1} from "uuid";
@@ -41,9 +41,9 @@ export type TasksStateType = {
 }
 
 function Lesson_8_App_Redux() {
+    console.log('App')
 
-    // const todoListId_1: string = v1();
-    // const todoListId_2: string = v1();
+
 
 
     const todoLists = useSelector<AppRootStateType, Array<TodoListType>>(state => state.todolists)
@@ -53,72 +53,70 @@ function Lesson_8_App_Redux() {
     const dispatch = useDispatch()
 
 
-    const removeTask = (taskId: string, todoListId: string) => {
+    const removeTask = useCallback((taskId: string, todoListId: string) => {
         dispatch(removeTaskAC(taskId, todoListId))
 
 
-    }
-    const addTask = (title: string, todoListId: string) => {
+    },[dispatch])
+    const addTask = useCallback((title: string, todoListId: string) => {
 
         dispatch(addTaskAC(title, todoListId))
 
 
-    }
-    const changeTaskStatus = (taskId: string, isDone: boolean, todoListId: string) => {
+    },[])
+    const changeTaskStatus =useCallback( (taskId: string, isDone: boolean, todoListId: string) => {
         dispatch(changeTaskStatusAC(taskId, isDone, todoListId))
 
-    }
-    const changeTaskTitle = (taskId: string, title: string, todoListId: string) => {
+    },[dispatch])
+    const changeTaskTitle = useCallback((taskId: string, title: string, todoListId: string) => {
         dispatch(changeTaskTitleAC(taskId, title, todoListId))
-    }
+    },[dispatch])
 
 
-    const changeTodoListFilter = (filter: FilterValuesType, todoListId: string) => {
+    const changeTodoListFilter = useCallback((filter: FilterValuesType, todoListId: string) => {
         dispatch(ChangeTodolistFilterAC(todoListId, filter))
 
-    }
-    const changeTodoListTitle = (title: string, todoListId: string) => {
+    },[dispatch])
+    const changeTodoListTitle = useCallback((title: string, todoListId: string) => {
         dispatch(ChangeTodolistTitleAC(todoListId, title))
 
-    }
-    const removeTodoList = (todoListId: string) => {
+    },[dispatch])
+    const removeTodoList = useCallback((todoListId: string) => {
         let actions = RemoveTodolistAC(todoListId)
         dispatch(actions)
 
 
-    }
-    const addTodoList = (title: string) => {
+    },[dispatch])
+    const addTodoList = useCallback((title: string) => {
         let action = AddTodolistAC(title)
         dispatch(action)
 
 
-    }
+    },[dispatch])
 
 
-    const getFilteredTasksForRender = (tasks: TaskType[], filter: FilterValuesType): TaskType[] => {
-        switch (filter) {
-            case "active":
-                return tasks.filter(t => !t.isDone)
-            case "completed":
-                return tasks.filter(t => t.isDone)
-            default:
-                return tasks
-        }
-    }
+    // const getFilteredTasksForRender = (tasks: TaskType[], filter: FilterValuesType): TaskType[] => {
+    //     switch (filter) {
+    //         case "active":
+    //             return tasks.filter(t => !t.isDone)
+    //         case "completed":
+    //             return tasks.filter(t => t.isDone)
+    //         default:
+    //             return tasks
+    //     }
+    // }
 
     const todolistItem = todoLists.map(tl => {
-        const filteredTasksForRender: Array<TaskType> = getFilteredTasksForRender(tasks[tl.id], tl.filter)
+        // const filteredTasksForRender: Array<TaskType> = getFilteredTasksForRender(tasks[tl.id], tl.filter)
         return (
-
-            <Grid item>
-                <Paper elevation={24}
-                       sx={{p: "15px"}}
-                >
+            <Grid item key={tl.id}>
+                <Paper elevation={24} sx={{p: "15px"}} key={tl.id}>
                     <Lesson_8_TodoList key={tl.id}
                                        todoListId={tl.id}
                                        filter={tl.filter}
                                        title={tl.title}
-                                       tasks={filteredTasksForRender}
+                                       // tasks={filteredTasksForRender}
+                                       tasks={tasks[tl.id]}
 
                                        removeTodoList={removeTodoList}
                                        addTask={addTask}
@@ -129,7 +127,9 @@ function Lesson_8_App_Redux() {
 
                                        changeTodoListFilter={changeTodoListFilter}
 
-                    /></Paper></Grid>
+                    />
+                </Paper>
+            </Grid>
         )
 
 
