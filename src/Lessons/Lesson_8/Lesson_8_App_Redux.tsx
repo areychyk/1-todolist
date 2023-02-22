@@ -108,6 +108,9 @@ function Lesson_8_App_Redux() {
 
     const todolistItem = todoLists.map(tl => {
         // const filteredTasksForRender: Array<TaskType> = getFilteredTasksForRender(tasks[tl.id], tl.filter)
+
+
+
         return (
             <Grid item key={tl.id}>
                 <Paper elevation={24} sx={{p: "15px"}} key={tl.id}>

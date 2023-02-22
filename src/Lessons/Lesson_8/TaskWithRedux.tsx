@@ -6,8 +6,7 @@ import DoDisturbAltIcon from "@mui/icons-material/DoDisturbAlt";
 import {TaskType} from "./Lesson_8_TodoList";
 import {useDispatch, useSelector} from "react-redux";
 import {changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./store/tasks-reducer";
-import {AppRootStateType} from "./store/store";
-import {TasksStateType} from "./Lesson_8_App_Redux";
+
 
 type TaskWithReduxPropsType = {
     todoListId: string
@@ -59,3 +58,4 @@ const dispatch = useDispatch()
 
 
 })
+
